@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditCardValidation", "CreditCardValidation\CreditCardValidation.csproj", "{1B718EB5-E6AF-48A1-9A64-22986FAC891B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B718EB5-E6AF-48A1-9A64-22986FAC891B}.Debug|x86.ActiveCfg = Release|x86
+		{1B718EB5-E6AF-48A1-9A64-22986FAC891B}.Debug|x86.Build.0 = Release|x86
+		{1B718EB5-E6AF-48A1-9A64-22986FAC891B}.Release|x86.ActiveCfg = Release|x86
+		{1B718EB5-E6AF-48A1-9A64-22986FAC891B}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
