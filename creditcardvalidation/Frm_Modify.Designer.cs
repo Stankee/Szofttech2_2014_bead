@@ -45,7 +45,7 @@
             // 
             // txt_vnevM
             // 
-            this.txt_vnevM.Location = new System.Drawing.Point(85, 6);
+            this.txt_vnevM.Location = new System.Drawing.Point(85, 11);
             this.txt_vnevM.Name = "txt_vnevM";
             this.txt_vnevM.Size = new System.Drawing.Size(162, 20);
             this.txt_vnevM.TabIndex = 1;
@@ -54,7 +54,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 1;
@@ -62,7 +62,7 @@
             // 
             // txt_knevM
             // 
-            this.txt_knevM.Location = new System.Drawing.Point(85, 32);
+            this.txt_knevM.Location = new System.Drawing.Point(85, 37);
             this.txt_knevM.Name = "txt_knevM";
             this.txt_knevM.Size = new System.Drawing.Size(162, 20);
             this.txt_knevM.TabIndex = 2;
@@ -71,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 35);
+            this.label2.Location = new System.Drawing.Point(12, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 1;
@@ -80,7 +80,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 61);
+            this.label3.Location = new System.Drawing.Point(12, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 1;
@@ -88,7 +88,7 @@
             // 
             // btn_change
             // 
-            this.btn_change.Location = new System.Drawing.Point(131, 93);
+            this.btn_change.Location = new System.Drawing.Point(131, 98);
             this.btn_change.Name = "btn_change";
             this.btn_change.Size = new System.Drawing.Size(75, 23);
             this.btn_change.TabIndex = 7;
@@ -109,7 +109,7 @@
             // 
             // txt_kartya4
             // 
-            this.txt_kartya4.Location = new System.Drawing.Point(253, 58);
+            this.txt_kartya4.Location = new System.Drawing.Point(253, 63);
             this.txt_kartya4.MaxLength = 4;
             this.txt_kartya4.Name = "txt_kartya4";
             this.txt_kartya4.Size = new System.Drawing.Size(50, 20);
@@ -118,7 +118,7 @@
             // 
             // txt_kartya3
             // 
-            this.txt_kartya3.Location = new System.Drawing.Point(197, 58);
+            this.txt_kartya3.Location = new System.Drawing.Point(197, 63);
             this.txt_kartya3.MaxLength = 4;
             this.txt_kartya3.Name = "txt_kartya3";
             this.txt_kartya3.Size = new System.Drawing.Size(50, 20);
@@ -127,7 +127,7 @@
             // 
             // txt_kartya2
             // 
-            this.txt_kartya2.Location = new System.Drawing.Point(141, 58);
+            this.txt_kartya2.Location = new System.Drawing.Point(141, 63);
             this.txt_kartya2.MaxLength = 4;
             this.txt_kartya2.Name = "txt_kartya2";
             this.txt_kartya2.Size = new System.Drawing.Size(50, 20);
@@ -136,7 +136,7 @@
             // 
             // txt_kartya1
             // 
-            this.txt_kartya1.Location = new System.Drawing.Point(85, 58);
+            this.txt_kartya1.Location = new System.Drawing.Point(85, 63);
             this.txt_kartya1.MaxLength = 4;
             this.txt_kartya1.Name = "txt_kartya1";
             this.txt_kartya1.Size = new System.Drawing.Size(50, 20);
