@@ -15,26 +15,20 @@ using MySql.Data.MySqlClient;
  * 2. néha eltűnik a termék neve után az összeg (faszt tünik el csak madár vagy) TODO: abbahagyni a madárkodást :D
  * 3. valami biszembaszom terméknév kitalálása (Properties/AssemblyInfo.cs)
  * 
- * DONE
- * 
- *  1. cb_kategoriak feltöltése
- *  2. szűrés, ha megoldható tényleg szűrjön és ne a kezdődést vizsgálja (ha beírom, hogy Asus, akkor az összes Asus terméket mutassa)
- *  3. random generáljunk pénzt az új embereknek (Frm_Start)
- *  4. névjegy adatainak beállítása
- *  5. a korábbi vásárlások űrlapon jelenjen meg alapból a 'vasarlasoknezet', de lehessen embert is választani
+ * DONE 
+ * 1. cb_kategoriak feltöltése
+ * 2. szűrés, ha megoldható tényleg szűrjön és ne a kezdődést vizsgálja (ha beírom, hogy Asus, akkor az összes Asus terméket mutassa)
+ * 3. random generáljunk pénzt az új embereknek (Frm_Start)
+ * 4. névjegy adatainak beállítása
+ * 5. a korábbi vásárlások űrlapon jelenjen meg alapból a 'vasarlasoknezet', de lehessen embert is választani
  *  
  * INFO
  * vasarlasok tábla: kartyaSzam (char16), termekID (char4), darab (int)
  * vasarlok tábla: vnev (varchar), knev (varchar), kartyaSzam (char16), egyenleg (double)
- * double-re bátran itt is double-t használni, charra pedig stringet
- * 
- * !ÚJ!
- * termekek tábla átalakult: termekID (char4), nev (varchar), ar (double), kategoria (char4)
- * új kategoriak tábla: katID (char4), katNev (varchar)
- * tettem egy model ábrát a misc mappába, az alapján látod majd, hogy vannak összekötve a táblák
+ * termekek tábla: termekID (char4), nev (varchar), ar (double), kategoria (char4)
  * 
  * Nézet SQL
- * (elmentve 'vasarlasoknezet' neven (select * from vasarlasoknezet;)
+ * (elmentve 'vasarlasoknezet' neven (select * from vasarlasoknezet;))
  * select
  * vasarlasID as Vásárlás_azonosító, 
  * Concat(vnev, ' ', knev) as Név, 
@@ -88,7 +82,7 @@ namespace CreditCardValidation
 
             MySqlConnection con = null;
             MySqlDataReader reader = null;
-            MySqlDataAdapter adapter = null;
+            //MySqlDataAdapter adapter = null;
             DataTable dt = new DataTable();
             try
             {
@@ -254,8 +248,7 @@ namespace CreditCardValidation
 
         public void SQLVasarlasokUpdate()       
         {
-            string kartyaSzam = ((Vasarlo)cb_vasarlok.SelectedItem).KartyaSzam;
-            //string termekId = ???
+            string kartyaSzam = ((Vasarlo)cb_vasarlok.SelectedItem).KartyaSzam;            
 
             //DateTime formátum konvertálás, csak így fogadja el a mySQL
 
@@ -413,7 +406,7 @@ namespace CreditCardValidation
                     lst_nemszurt.Add(item);
                 }
 
-                IEnumerable<Termek> result = lst_nemszurt.Where(s => s.Nev.Contains(txt_szuro.Text));
+                IEnumerable<Termek> result = lst_nemszurt.Where(s => s.Nev.ToLower().Contains(txt_szuro.Text.ToLower()));
                 List<Termek> lst_szurt = result.ToList();
 
                 lb_termekek.Items.Clear();
@@ -423,6 +416,7 @@ namespace CreditCardValidation
                 }
             }
             else { }
+
             #region OLD
             /*lb_termekek.DataSource = termekTable;
             lb_termekek.DisplayMember = "nev";
@@ -442,6 +436,7 @@ namespace CreditCardValidation
             }
             catch { lb_termekek.DataSource = null; }*/
             #endregion
+
         }
 
         private void lb_termekek_SelectedIndexChanged(object sender, EventArgs e)
@@ -471,8 +466,15 @@ namespace CreditCardValidation
 
         private void txt_szuro_Leave(object sender, EventArgs e)
         {
-            txt_szuro.Text = "Keresés";
-            txt_szuro.ForeColor = szuroSzin;
+            if (txt_szuro.Text == "")
+            {
+                txt_szuro.Text = "Keresés";
+                txt_szuro.ForeColor = szuroSzin;
+            }
+            if (txt_szuro.Text != "Keresés")
+            {
+                txt_szuro.ForeColor = Color.Black;
+            }            
         }
 
         private void cb_kategoriak_SelectedIndexChanged(object sender, EventArgs e)

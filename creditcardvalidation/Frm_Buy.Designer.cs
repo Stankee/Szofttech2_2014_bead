@@ -51,35 +51,39 @@
             // 
             // lb_termekek
             // 
+            this.lb_termekek.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lb_termekek.FormattingEnabled = true;
             this.lb_termekek.Location = new System.Drawing.Point(16, 109);
             this.lb_termekek.Name = "lb_termekek";
-            this.lb_termekek.Size = new System.Drawing.Size(350, 264);
+            this.lb_termekek.Size = new System.Drawing.Size(350, 262);
             this.lb_termekek.TabIndex = 0;
             this.lb_termekek.SelectedIndexChanged += new System.EventHandler(this.lb_termekek_SelectedIndexChanged);
             this.lb_termekek.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lb_termekek_MouseDoubleClick);
             // 
             // cb_vasarlok
             // 
+            this.cb_vasarlok.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cb_vasarlok.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cb_vasarlok.FormattingEnabled = true;
             this.cb_vasarlok.Location = new System.Drawing.Point(16, 27);
             this.cb_vasarlok.Name = "cb_vasarlok";
             this.cb_vasarlok.Size = new System.Drawing.Size(237, 21);
             this.cb_vasarlok.TabIndex = 1;
-            this.cb_vasarlok.Text = "-";
             this.cb_vasarlok.SelectedIndexChanged += new System.EventHandler(this.cb_vasarlok_SelectedIndexChanged);
             // 
             // lb_kosar
             // 
+            this.lb_kosar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lb_kosar.FormattingEnabled = true;
             this.lb_kosar.Location = new System.Drawing.Point(449, 83);
             this.lb_kosar.Name = "lb_kosar";
-            this.lb_kosar.Size = new System.Drawing.Size(350, 290);
+            this.lb_kosar.Size = new System.Drawing.Size(350, 288);
             this.lb_kosar.TabIndex = 0;
             this.lb_kosar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lb_kosar_MouseDoubleClick);
             // 
             // btn_kosarba
             // 
+            this.btn_kosarba.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_kosarba.Location = new System.Drawing.Point(391, 215);
             this.btn_kosarba.Name = "btn_kosarba";
             this.btn_kosarba.Size = new System.Drawing.Size(28, 28);
@@ -93,9 +97,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Vásárló";
+            this.label1.Text = "Vásárló:";
             // 
             // label2
             // 
@@ -108,6 +112,7 @@
             // 
             // txt_teljesar
             // 
+            this.txt_teljesar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_teljesar.Enabled = false;
             this.txt_teljesar.Location = new System.Drawing.Point(734, 379);
             this.txt_teljesar.Name = "txt_teljesar";
@@ -127,6 +132,7 @@
             // 
             // btn_save
             // 
+            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_save.Location = new System.Drawing.Point(368, 414);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(75, 23);
@@ -138,14 +144,15 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(262, 11);
+            this.label4.Location = new System.Drawing.Point(256, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 13);
+            this.label4.Size = new System.Drawing.Size(54, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Egyenleg";
+            this.label4.Text = "Egyenleg:";
             // 
             // txt_egyenleg
             // 
+            this.txt_egyenleg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_egyenleg.Enabled = false;
             this.txt_egyenleg.Location = new System.Drawing.Point(259, 28);
             this.txt_egyenleg.Name = "txt_egyenleg";
@@ -166,6 +173,7 @@
             // btn_add
             // 
             this.btn_add.Enabled = false;
+            this.btn_add.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_add.Location = new System.Drawing.Point(330, 26);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
@@ -176,6 +184,7 @@
             // 
             // btn_kiakosarbol
             // 
+            this.btn_kiakosarbol.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_kiakosarbol.Location = new System.Drawing.Point(391, 249);
             this.btn_kiakosarbol.Name = "btn_kiakosarbol";
             this.btn_kiakosarbol.Size = new System.Drawing.Size(28, 28);
@@ -186,6 +195,7 @@
             // 
             // txt_szuro
             // 
+            this.txt_szuro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_szuro.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.txt_szuro.Location = new System.Drawing.Point(16, 83);
             this.txt_szuro.Name = "txt_szuro";
@@ -198,8 +208,9 @@
             // 
             // txt_ar
             // 
+            this.txt_ar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_ar.Enabled = false;
-            this.txt_ar.Location = new System.Drawing.Point(301, 379);
+            this.txt_ar.Location = new System.Drawing.Point(83, 379);
             this.txt_ar.Name = "txt_ar";
             this.txt_ar.Size = new System.Drawing.Size(65, 20);
             this.txt_ar.TabIndex = 13;
@@ -209,7 +220,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(231, 382);
+            this.label6.Location = new System.Drawing.Point(13, 382);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 13);
             this.label6.TabIndex = 14;
@@ -217,6 +228,7 @@
             // 
             // cb_kategoriak
             // 
+            this.cb_kategoriak.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cb_kategoriak.ForeColor = System.Drawing.SystemColors.InactiveCaption;
             this.cb_kategoriak.FormattingEnabled = true;
             this.cb_kategoriak.Location = new System.Drawing.Point(77, 60);

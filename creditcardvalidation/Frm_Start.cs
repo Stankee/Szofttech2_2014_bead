@@ -12,13 +12,7 @@ using MySql.Data.MySqlClient;
 namespace CreditCardValidation
 {    
     //mysql-connector-net-6.8.3
-
-    /*
-     * duplaklikkre átállítottam, hogy a vásárlás jelenjen meg, több értelme van 
-     */
-
-    
-    
+   
     public partial class Frm_Start : Form
     {
         Regex ex;     
@@ -348,7 +342,7 @@ namespace CreditCardValidation
         {
             string kartyaSzam = txt_kartya1.Text + txt_kartya2.Text + txt_kartya3.Text + txt_kartya4.Text;
             r = new Random();
-            double egyenleg = r.Next(10000, 25000);
+            double egyenleg = r.Next(10000, 250000);
      
             MySqlConnection con = null;
             try

@@ -16,17 +16,8 @@ namespace CreditCardValidation
 
         public Frm_Login()
         {
-            /*
-             * 
-             * TODO
-             * Login adatokat kivenni!
-             * 
-             */
-
             InitializeComponent();
             panel1.Visible = false;
-            txt_user.Text = "guest";
-            txt_pass.Text = "bce";
         }
 
         private void button1_Click(object sender, EventArgs e)

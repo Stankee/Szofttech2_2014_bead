@@ -17,6 +17,7 @@ namespace CreditCardValidation
         string pass;
         string delegatedName;
         int? cacheindex = null;
+        bool csoport = false;
 
         public Frm_PastBuys(string selectedName)
         {
@@ -120,6 +121,14 @@ namespace CreditCardValidation
 
         private void cb_vasarlok_SelectedIndexChanged(object sender, EventArgs e)
         {
+            feltolt();
+        }
+
+        private void feltolt()
+        {
+            string alapSQL = "SELECT * FROM vasarlasoknezetnew";
+            string csoportSQL = "select `Nev`, Count(`Termeknev`) as Termekek, Sum(Ar) as Osszesen, Idopont from vasarlasoknezetnew group by Nev, Idopont order by idopont desc";
+
             MySqlConnection con = null;
             con = new MySqlConnection(str);
             con.Open();
@@ -131,11 +140,36 @@ namespace CreditCardValidation
             string teljes_nevsqlstring = " WHERE Nev = '" + teljes_nev + "'";
             if (teljes_nev == "Minden vásárló ") teljes_nevsqlstring = "";
 
-            adapter = new MySqlDataAdapter("SELECT * FROM vasarlasoknezetnew" + teljes_nevsqlstring, con);
+            if (csoport == true)
+            {
+                adapter = new MySqlDataAdapter(csoportSQL + teljes_nevsqlstring, con);
+            }
+            else
+            {
+                adapter = new MySqlDataAdapter(alapSQL + teljes_nevsqlstring, con);
+            }
+
             DataSet ds = new DataSet();
             adapter.Fill(ds);
 
             grid_vasarlasok.DataSource = ds.Tables[0];
+        }
+
+        private void cb_csoport_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_csoport.Checked == true)
+            {
+                csoport = true;
+                cb_vasarlok.SelectedIndex = 0;
+                cb_vasarlok.Enabled = false;
+                feltolt();
+            }
+            else
+            {
+                csoport = false;
+                cb_vasarlok.Enabled = true;
+                feltolt();
+            }
         }
     }
 }

@@ -35,13 +35,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txt_pass = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_login
             // 
+            this.btn_login.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_login.Location = new System.Drawing.Point(93, 86);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(98, 23);
@@ -61,6 +62,7 @@
             // 
             // txt_user
             // 
+            this.txt_user.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_user.Location = new System.Drawing.Point(137, 24);
             this.txt_user.Name = "txt_user";
             this.txt_user.Size = new System.Drawing.Size(100, 20);
@@ -77,6 +79,7 @@
             // 
             // txt_pass
             // 
+            this.txt_pass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_pass.Location = new System.Drawing.Point(137, 50);
             this.txt_pass.Name = "txt_pass";
             this.txt_pass.PasswordChar = '●';
@@ -92,15 +95,6 @@
             this.panel1.Size = new System.Drawing.Size(82, 46);
             this.panel1.TabIndex = 4;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "guest";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -109,6 +103,15 @@
             this.label4.Size = new System.Drawing.Size(25, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "bce";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "guest";
             // 
             // Frm_Login
             // 
