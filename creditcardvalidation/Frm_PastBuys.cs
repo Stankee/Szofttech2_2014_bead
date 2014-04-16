@@ -16,7 +16,8 @@ namespace CreditCardValidation
         string user;
         string pass;
         string delegatedName;
-        
+        int? cacheindex = null;
+
         public Frm_PastBuys(string selectedName)
         {
             InitializeComponent();
@@ -68,9 +69,10 @@ namespace CreditCardValidation
                         + reader.GetString(2).Substring(8, 4)
                         + "-"
                         + reader.GetString(2).Substring(12, 4)
-                        + "]", reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDouble(3))); 
+                        + "]", reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDouble(3)));
+                    if (reader.GetString(0) + " " + reader.GetString(1) == delegatedName) cacheindex = cb_vasarlok.Items.Count; 
                 }
-                cb_vasarlok.SelectedIndex = 0;
+                
                 reader.Close();
                 #endregion             
 
@@ -82,6 +84,9 @@ namespace CreditCardValidation
 
                 grid_vasarlasok.DataSource = ds.Tables[0];
                 #endregion
+
+                if (cacheindex == null) cb_vasarlok.SelectedIndex = 0;
+                else cb_vasarlok.SelectedIndex = (int)cacheindex - 1;
             }
             catch (MySqlException err)
             {
