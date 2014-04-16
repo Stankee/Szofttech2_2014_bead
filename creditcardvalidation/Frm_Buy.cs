@@ -12,13 +12,27 @@ using MySql.Data.MySqlClient;
  * ÚJ TODO
  * 
  * 1. Vásárlások lekérdezése, group by időpont
- * select vnev, knev, idopont, count(*), sum(ar) from vasarlasoknezet group by idopont, vnev, knev 
+ *    select vnev, knev, idopont, count(*), sum(ar) from vasarlasoknezet group by idopont, vnev, knev 
+ * 2. cb_kategoriak feltöltése
  *  
- * termekek tábla: termekID (char4), nev (varchar), ar (double)
  * vasarlasok tábla: kartyaSzam (char16), termekID (char4), darab (int)
  * vasarlok tábla: vnev (varchar), knev (varchar), kartyaSzam (char16), egyenleg (double)
  * double-re bátran itt is double-t használni, charra pedig stringet
  * 
+ * !!!ÚJ!!!
+ * termekek tábla átalakult: termekID (char4), nev (varchar), ar (double), kategoria (char4)
+ * új kategoriak tábla: katID (char4), katNev (varchar)
+ * 
+ * Nézet SQL
+ * 
+ * select 
+ * vasarlasID as Vásárlás_azonosító, 
+ * Concat(vnev, ' ', knev) as Név, 
+ * t.nev as Terméknév, katnev as Kategórianév, 
+ * Concat(ar, ' Ft') as Ár, 
+ * idopont as Időpont 
+ * from kategoriak k, termekek t, vasarlasok v, vasarlok b 
+ * where katID = kategoria and t.termekID = v.termekID and b.kartyaSzam = v.kartyaSzam;
  */
 
 
@@ -340,6 +354,10 @@ namespace CreditCardValidation
 
         private void cb_vasarlok_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cb_vasarlok.SelectedIndex != -1)
+            {
+                btn_add.Enabled = true;
+            }
             string nev = ((Vasarlo)cb_vasarlok.SelectedItem).VezetekNev + " " + ((Vasarlo)cb_vasarlok.SelectedItem).KeresztNev;
             delegatedName = nev;
             SetData();
@@ -382,19 +400,19 @@ namespace CreditCardValidation
         }
 
         //txt_szuro szín mentése
-        Color szuro = new Color();
+        Color szuroSzin = new Color();
 
         private void txt_szuro_Enter(object sender, EventArgs e)
         {
             txt_szuro.Text = "";
-            szuro = txt_szuro.ForeColor;
+            szuroSzin = txt_szuro.ForeColor;
             txt_szuro.ForeColor = Color.Black;
         }
 
         private void txt_szuro_Leave(object sender, EventArgs e)
         {
             txt_szuro.Text = "Keresés";
-            txt_szuro.ForeColor = szuro;
+            txt_szuro.ForeColor = szuroSzin;
         }
     }
 }

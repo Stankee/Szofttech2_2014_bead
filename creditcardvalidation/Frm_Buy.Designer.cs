@@ -46,6 +46,7 @@
             this.txt_szuro = new System.Windows.Forms.TextBox();
             this.txt_ar = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.cb_kategoriak = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lb_termekek
@@ -163,6 +164,7 @@
             // 
             // btn_add
             // 
+            this.btn_add.Enabled = false;
             this.btn_add.Location = new System.Drawing.Point(330, 26);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
@@ -212,11 +214,22 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Termék ára:";
             // 
+            // cb_kategoriak
+            // 
+            this.cb_kategoriak.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cb_kategoriak.FormattingEnabled = true;
+            this.cb_kategoriak.Location = new System.Drawing.Point(77, 60);
+            this.cb_kategoriak.Name = "cb_kategoriak";
+            this.cb_kategoriak.Size = new System.Drawing.Size(176, 21);
+            this.cb_kategoriak.TabIndex = 15;
+            this.cb_kategoriak.Text = "Kategóriák";
+            // 
             // Frm_Buy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 449);
+            this.Controls.Add(this.cb_kategoriak);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txt_ar);
             this.Controls.Add(this.txt_szuro);
@@ -264,5 +277,6 @@
         private System.Windows.Forms.TextBox txt_szuro;
         private System.Windows.Forms.TextBox txt_ar;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cb_kategoriak;
     }
 }
