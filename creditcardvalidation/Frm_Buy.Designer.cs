@@ -66,6 +66,7 @@
             this.cb_vasarlok.Name = "cb_vasarlok";
             this.cb_vasarlok.Size = new System.Drawing.Size(237, 21);
             this.cb_vasarlok.TabIndex = 1;
+            this.cb_vasarlok.Text = "-";
             this.cb_vasarlok.SelectedIndexChanged += new System.EventHandler(this.cb_vasarlok_SelectedIndexChanged);
             // 
             // lb_kosar

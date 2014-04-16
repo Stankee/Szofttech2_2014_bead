@@ -42,7 +42,6 @@
             this.btn_newBuy = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btn_addSQL = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txt_knev = new System.Windows.Forms.TextBox();
             this.txt_vnev = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -63,14 +62,16 @@
             this.timer_save = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tlslabel_connect = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_pastbuy = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -86,6 +87,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btn_pastbuy);
             this.tabPage3.Controls.Add(this.btn_change);
             this.tabPage3.Controls.Add(this.btn_sqlDelete);
             this.tabPage3.Controls.Add(this.label7);
@@ -165,7 +167,7 @@
             // 
             // btn_newBuy
             // 
-            this.btn_newBuy.Location = new System.Drawing.Point(6, 138);
+            this.btn_newBuy.Location = new System.Drawing.Point(6, 109);
             this.btn_newBuy.Name = "btn_newBuy";
             this.btn_newBuy.Size = new System.Drawing.Size(75, 23);
             this.btn_newBuy.TabIndex = 1;
@@ -176,7 +178,6 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.btn_addSQL);
-            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.txt_knev);
             this.tabPage1.Controls.Add(this.txt_vnev);
             this.tabPage1.Controls.Add(this.label3);
@@ -186,6 +187,7 @@
             this.tabPage1.Controls.Add(this.txt_kartya3);
             this.tabPage1.Controls.Add(this.txt_kartya2);
             this.tabPage1.Controls.Add(this.txt_kartya1);
+            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -203,17 +205,6 @@
             this.btn_addSQL.Text = "Add to SQL";
             this.btn_addSQL.UseVisualStyleBackColor = true;
             this.btn_addSQL.Click += new System.EventHandler(this.btn_addSQL_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::CreditCardValidation.Properties.Resources.red_cross;
-            this.pictureBox1.Location = new System.Drawing.Point(329, 94);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
             // 
             // txt_knev
             // 
@@ -388,6 +379,27 @@
             this.tlslabel_connect.Size = new System.Drawing.Size(68, 17);
             this.tlslabel_connect.Text = "Várakozás...";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CreditCardValidation.Properties.Resources.red_cross;
+            this.pictureBox1.Location = new System.Drawing.Point(329, 94);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
+            // btn_pastbuy
+            // 
+            this.btn_pastbuy.Location = new System.Drawing.Point(6, 138);
+            this.btn_pastbuy.Name = "btn_pastbuy";
+            this.btn_pastbuy.Size = new System.Drawing.Size(75, 23);
+            this.btn_pastbuy.TabIndex = 7;
+            this.btn_pastbuy.Text = "Vásárlások";
+            this.btn_pastbuy.UseVisualStyleBackColor = true;
+            this.btn_pastbuy.Click += new System.EventHandler(this.btn_pastbuy_Click);
+            // 
             // Frm_Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,13 +423,13 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,6 +470,7 @@
         private System.Windows.Forms.ToolStripMenuItem súgóToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem névjegyToolStripMenuItem;
         private System.Windows.Forms.Button btn_newBuy;
+        private System.Windows.Forms.Button btn_pastbuy;
     }
 }
 

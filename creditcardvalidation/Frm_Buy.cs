@@ -9,23 +9,29 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 /* 
- * ÚJ TODO
- * 
- * 1. Vásárlások lekérdezése, group by időpont
+ * TODO 
+ * 1. vásárlások lekérdezése, group by időpont
  *    select vnev, knev, idopont, count(*), sum(ar) from vasarlasoknezet group by idopont, vnev, knev 
  * 2. cb_kategoriak feltöltése
- *  
+ * 3. néha eltűnik a termék neve után az összeg
+ * 4. random generáljunk pénzt az új embereknek (Frm_Start)
+ * 5. névjegy adatainak beállítása
+ * 6. a korábbi vásárlások űrlapon jelenjen meg alapból a 'vasarlasoknezet', de lehessen embert is választani
+ * 7. szűrés, ha megoldható tényleg szűrjön és ne a kezdődést vizsgálja (ha beírom, hogy Asus, akkor az összes Asus terméket mutassa)
+ * 
+ * INFO
  * vasarlasok tábla: kartyaSzam (char16), termekID (char4), darab (int)
  * vasarlok tábla: vnev (varchar), knev (varchar), kartyaSzam (char16), egyenleg (double)
  * double-re bátran itt is double-t használni, charra pedig stringet
  * 
- * !!!ÚJ!!!
+ * !ÚJ!
  * termekek tábla átalakult: termekID (char4), nev (varchar), ar (double), kategoria (char4)
  * új kategoriak tábla: katID (char4), katNev (varchar)
+ * tettem egy model ábrát a misc mappába, az alapján látod majd, hogy vannak összekötve a táblák
  * 
  * Nézet SQL
- * 
- * select 
+ * (elmentve 'vasarlasoknezet' neven (select * from vasarlasoknezet;)
+ * select
  * vasarlasID as Vásárlás_azonosító, 
  * Concat(vnev, ' ', knev) as Név, 
  * t.nev as Terméknév, katnev as Kategórianév, 
@@ -298,6 +304,10 @@ namespace CreditCardValidation
                 osszar -= ((Termek)lb_kosar.SelectedItem).Ar;
                 lb_kosar.Items.Remove(lb_kosar.SelectedItem);
                 txt_teljesar.Text = osszar.ToString() + " Ft";
+                if (lb_kosar.Items.Count == 0)
+                {
+                    cb_vasarlok.Enabled = true;
+                }
             }
             catch { MessageBox.Show("Nem választottál ki semmit a kosaradból!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         }
@@ -315,6 +325,7 @@ namespace CreditCardValidation
                 lb_kosar.Items.Add(lb_termekek.SelectedItem);
                 osszar += ((Termek)lb_termekek.SelectedItem).Ar;
                 txt_teljesar.Text = osszar.ToString() + " Ft";
+                cb_vasarlok.Enabled = false;
             }
             catch { MessageBox.Show("Nincs kiválasztott termék!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         }

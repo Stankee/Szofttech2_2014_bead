@@ -14,11 +14,7 @@ namespace CreditCardValidation
     //mysql-connector-net-6.8.3
 
     /*
-     * 
-     * TODO
-     * 
-     * duplaklikk? (modify/új vásárlás)
-     * 
+     * duplaklikkre átállítottam, hogy a vásárlás jelenjen meg, több értelme van 
      */
 
     public partial class Frm_Start : Form
@@ -348,6 +344,7 @@ namespace CreditCardValidation
         private void btn_addSQL_Click(object sender, EventArgs e)
         {
             string kartyaSzam = txt_kartya1.Text + txt_kartya2.Text + txt_kartya3.Text + txt_kartya4.Text;
+            double egyenleg = 12500; //TODO random 10000 és 250000 közt
             
             MySqlConnection con = null;
             try
@@ -355,12 +352,13 @@ namespace CreditCardValidation
                 con = new MySqlConnection(str);
                 con.Open();
 
-                string cmdAdd = "INSERT INTO vasarlok (vnev, knev, kartyaSzam) VALUES (@vnev, @knev, @kartyaSzam);";
+                string cmdAdd = "INSERT INTO vasarlok (vnev, knev, kartyaSzam, egyenleg) VALUES (@vnev, @knev, @kartyaSzam, @egyenleg);";
                 MySqlCommand cmd = new MySqlCommand(cmdAdd, con);
                 cmd.Prepare();
                 cmd.Parameters.AddWithValue("@kartyaSzam", kartyaSzam);
                 cmd.Parameters.AddWithValue("@vnev", txt_vnev.Text);
                 cmd.Parameters.AddWithValue("@knev", txt_knev.Text);
+                cmd.Parameters.AddWithValue("@egyenleg", egyenleg);
                 cmd.ExecuteNonQuery();
 
                 Torol();
@@ -447,15 +445,15 @@ namespace CreditCardValidation
                     ((Elem)lb_sql.SelectedItem).KartyaSzam
                 );*/
 
-            Modositas();
+            vasarlas();
         }
 
         private void btn_change_Click(object sender, EventArgs e)
         {
-            Modositas();
+            modositas();
         }
 
-        private void Modositas()
+        private void modositas()
         {
             if (lb_sql.SelectedIndex != -1)
             {
@@ -501,6 +499,11 @@ namespace CreditCardValidation
 
         private void btn_newBuy_Click(object sender, EventArgs e)
         {
+            vasarlas();         
+        }
+
+        private void vasarlas()
+        {
             string selectedName = null;
             if (lb_sql.SelectedIndex != -1) selectedName = ((Vasarlo)lb_sql.SelectedItem).VezetekNev + " " + ((Vasarlo)lb_sql.SelectedItem).KeresztNev;
 
@@ -516,7 +519,21 @@ namespace CreditCardValidation
 
             Frm_Buy f = new Frm_Buy(selectedName);
             f.i = i;
-            f.Show();          
+            f.Show();
+        }
+
+        private void btn_pastbuy_Click(object sender, EventArgs e)
+        {
+            string selectedName = null;
+            if (lb_sql.SelectedIndex != -1) selectedName = ((Vasarlo)lb_sql.SelectedItem).VezetekNev + " " + ((Vasarlo)lb_sql.SelectedItem).KeresztNev;
+
+            Login i = new Login();
+            i.User = user;
+            i.Pass = pass;
+
+            Frm_PastBuys f = new Frm_PastBuys(selectedName);
+            f.i = i;
+            f.Show();
         }
     }
 }

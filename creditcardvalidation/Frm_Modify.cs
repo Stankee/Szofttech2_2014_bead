@@ -97,8 +97,7 @@ namespace CreditCardValidation
                 txt_kartya4.BackColor = Color.LightGreen;
                 if (txt_vnevM.Text.Length > 0 & txt_knevM.Text.Length > 0)
                 {
-                    Validalas();
-                    btn_change.Enabled = true;
+                    Validalas();                    
                 }                
             }
             else
