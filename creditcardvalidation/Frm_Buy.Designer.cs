@@ -224,6 +224,8 @@
             this.cb_kategoriak.Size = new System.Drawing.Size(176, 21);
             this.cb_kategoriak.TabIndex = 15;
             this.cb_kategoriak.Text = "Kategóriák";
+            this.cb_kategoriak.SelectedIndexChanged += new System.EventHandler(this.cb_kategoriak_SelectedIndexChanged);
+            this.cb_kategoriak.Enter += new System.EventHandler(this.cb_kategoriak_Enter);
             // 
             // Frm_Buy
             // 

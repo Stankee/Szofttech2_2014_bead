@@ -17,6 +17,8 @@ namespace CreditCardValidation
      * duplaklikkre átállítottam, hogy a vásárlás jelenjen meg, több értelme van 
      */
 
+    
+    
     public partial class Frm_Start : Form
     {
         Regex ex;     
@@ -25,6 +27,7 @@ namespace CreditCardValidation
         string user;
         string pass;
         int modValasztott;
+        Random r;
 
         public Login i
         {
@@ -344,8 +347,9 @@ namespace CreditCardValidation
         private void btn_addSQL_Click(object sender, EventArgs e)
         {
             string kartyaSzam = txt_kartya1.Text + txt_kartya2.Text + txt_kartya3.Text + txt_kartya4.Text;
-            double egyenleg = 12500; //TODO random 10000 és 250000 közt
-            
+            r = new Random();
+            double egyenleg = r.Next(10000, 25000);
+     
             MySqlConnection con = null;
             try
             {

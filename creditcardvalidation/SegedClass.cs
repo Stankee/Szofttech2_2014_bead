@@ -122,4 +122,35 @@ public class Termek
     {
         return displayValue;
     }
+
+
+    
+}
+public class Kategoria
+{
+    string displayValue;
+    string katID;
+    string katNev;
+
+    public Kategoria(string d, string kid, string kn)
+    {
+        displayValue = d;
+        katID = kid;
+        katNev = kn;
+    }
+
+    public string KatID
+    {
+        get { return katID; }
+    }
+
+    public string KatNev
+    {
+        get { return katNev; }
+    }
+
+    public override string ToString()
+    {
+        return displayValue;
+    }
 }

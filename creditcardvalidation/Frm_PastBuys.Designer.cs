@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_PastBuys));
             this.label1 = new System.Windows.Forms.Label();
             this.cb_vasarlok = new System.Windows.Forms.ComboBox();
+            this.grid_vasarlasok = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.grid_vasarlasok)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -49,12 +51,25 @@
             this.cb_vasarlok.Name = "cb_vasarlok";
             this.cb_vasarlok.Size = new System.Drawing.Size(237, 21);
             this.cb_vasarlok.TabIndex = 4;
+            this.cb_vasarlok.SelectedIndexChanged += new System.EventHandler(this.cb_vasarlok_SelectedIndexChanged);
+            // 
+            // grid_vasarlasok
+            // 
+            this.grid_vasarlasok.AllowUserToAddRows = false;
+            this.grid_vasarlasok.AllowUserToDeleteRows = false;
+            this.grid_vasarlasok.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid_vasarlasok.Location = new System.Drawing.Point(15, 64);
+            this.grid_vasarlasok.Name = "grid_vasarlasok";
+            this.grid_vasarlasok.ReadOnly = true;
+            this.grid_vasarlasok.Size = new System.Drawing.Size(778, 367);
+            this.grid_vasarlasok.TabIndex = 6;
             // 
             // Frm_PastBuys
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(805, 443);
+            this.Controls.Add(this.grid_vasarlasok);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cb_vasarlok);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -63,6 +78,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Korábbi vásárlások";
             this.Load += new System.EventHandler(this.Frm_PastBuys_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grid_vasarlasok)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -72,5 +88,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cb_vasarlok;
+        private System.Windows.Forms.DataGridView grid_vasarlasok;
     }
 }

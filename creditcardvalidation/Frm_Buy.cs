@@ -12,13 +12,17 @@ using MySql.Data.MySqlClient;
  * TODO 
  * 1. vásárlások lekérdezése, group by időpont
  *    select vnev, knev, idopont, count(*), sum(ar) from vasarlasoknezet group by idopont, vnev, knev 
- * 2. cb_kategoriak feltöltése
- * 3. néha eltűnik a termék neve után az összeg
- * 4. random generáljunk pénzt az új embereknek (Frm_Start)
- * 5. névjegy adatainak beállítása
- * 6. a korábbi vásárlások űrlapon jelenjen meg alapból a 'vasarlasoknezet', de lehessen embert is választani
- * 7. szűrés, ha megoldható tényleg szűrjön és ne a kezdődést vizsgálja (ha beírom, hogy Asus, akkor az összes Asus terméket mutassa)
+ * 2. néha eltűnik a termék neve után az összeg (faszt tünik el csak madár vagy) TODO: abbahagyni a madárkodást :D
+ * 3. valami biszembaszom terméknév kitalálása (Properties/AssemblyInfo.cs)
  * 
+ * DONE
+ * 
+ *  1. cb_kategoriak feltöltése
+ *  2. szűrés, ha megoldható tényleg szűrjön és ne a kezdődést vizsgálja (ha beírom, hogy Asus, akkor az összes Asus terméket mutassa)
+ *  3. random generáljunk pénzt az új embereknek (Frm_Start)
+ *  4. névjegy adatainak beállítása
+ *  5. a korábbi vásárlások űrlapon jelenjen meg alapból a 'vasarlasoknezet', de lehessen embert is választani
+ *  
  * INFO
  * vasarlasok tábla: kartyaSzam (char16), termekID (char4), darab (int)
  * vasarlok tábla: vnev (varchar), knev (varchar), kartyaSzam (char16), egyenleg (double)
@@ -53,7 +57,7 @@ namespace CreditCardValidation
         string delegatedName;
         int? cacheindex = null;
         double osszar;
-        DataTable termekTable;
+        List<Termek> lst_termekek = new List<Termek>();
 
         public Frm_Buy(string selectedName)
         {
@@ -80,6 +84,7 @@ namespace CreditCardValidation
             cb_vasarlok.Items.Clear();
             lb_termekek.DataSource = null;
             lb_termekek.Items.Clear();
+            cb_kategoriak.Items.Clear();
 
             MySqlConnection con = null;
             MySqlDataReader reader = null;
@@ -125,8 +130,15 @@ namespace CreditCardValidation
                             + " ("
                             + reader.GetDouble(2).ToString() + " Ft)", 
                             reader.GetString(0), reader.GetString(1), reader.GetDouble(2)));
+                    lst_termekek.Add(
+                        new Termek(reader.GetString(1)
+                            + " ("
+                            + reader.GetDouble(2).ToString() + " Ft)",
+                            reader.GetString(0), reader.GetString(1), reader.GetDouble(2)));
 
                 }
+                reader.Close();
+                #region OLD
                 /*adapter = new MySqlDataAdapter(cmd);
                 adapter.Fill(dt);
 
@@ -138,6 +150,21 @@ namespace CreditCardValidation
                     lb_termekek.DataSource = dt;                  
                 }
                 termekTable = dt;*/
+                #endregion
+                #endregion
+
+                #region Kategória cbo feltöltés
+                cmdText = "SELECT * FROM kategoriak ORDER BY katNev";
+                cmd = null; cmd = new MySqlCommand(cmdText, con);
+                reader = cmd.ExecuteReader();
+                cb_kategoriak.Items.Add(new Kategoria("Minden","0000","Minden"));
+                while (reader.Read())
+                {
+                    cb_kategoriak.Items.Add(
+                        new Kategoria(reader.GetString(1), reader.GetString(0), reader.GetString(1)));
+                }
+                reader.Close();
+
                 #endregion
             }
             catch (MySqlException err)
@@ -154,7 +181,9 @@ namespace CreditCardValidation
                 {
                     con.Close();
                 }
-            }    
+            }
+            con.Close();
+            
 
             if (cacheindex != null) cb_vasarlok.SelectedIndex = (int)cacheindex-1;
           
@@ -376,7 +405,26 @@ namespace CreditCardValidation
 
         private void txt_szuro_TextChanged(object sender, EventArgs e)
         {
-            lb_termekek.DataSource = termekTable;
+            if (txt_szuro.Text != "Keresés")
+            {
+                List<Termek> lst_nemszurt = new List<Termek>();
+                foreach (Termek item in lst_termekek)
+                {
+                    lst_nemszurt.Add(item);
+                }
+
+                IEnumerable<Termek> result = lst_nemszurt.Where(s => s.Nev.Contains(txt_szuro.Text));
+                List<Termek> lst_szurt = result.ToList();
+
+                lb_termekek.Items.Clear();
+                foreach (Termek item in lst_szurt)
+                {
+                    lb_termekek.Items.Add(item);
+                }
+            }
+            else { }
+            #region OLD
+            /*lb_termekek.DataSource = termekTable;
             lb_termekek.DisplayMember = "nev";
             lb_termekek.ValueMember = "termekID";
 
@@ -392,7 +440,8 @@ namespace CreditCardValidation
 
                 lb_termekek.DataSource = asd;
             }
-            catch { lb_termekek.DataSource = null; }
+            catch { lb_termekek.DataSource = null; }*/
+            #endregion
         }
 
         private void lb_termekek_SelectedIndexChanged(object sender, EventArgs e)
@@ -424,6 +473,60 @@ namespace CreditCardValidation
         {
             txt_szuro.Text = "Keresés";
             txt_szuro.ForeColor = szuroSzin;
+        }
+
+        private void cb_kategoriak_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cb_kategoriak.Text != "Kategóriák")
+            {
+                lb_termekek.Items.Clear();
+                lst_termekek.Clear();
+                cb_kategoriak.ForeColor = Color.Black;
+                try
+                {
+                    string katnev = ((Kategoria)cb_kategoriak.SelectedItem).KatNev;
+                    string katnevsqlstring = " AND k.katNev = '" +  katnev + "' ";
+                    if (katnev == "Minden") katnevsqlstring = " ";
+
+                    MySqlConnection con = new MySqlConnection(str);
+                    con.Open();
+                    string cmdText = "SELECT termekID, nev, ar, kategoria FROM termekek t, kategoriak k WHERE t.kategoria = k.katID" + katnevsqlstring + "ORDER BY t.nev";
+                    MySqlCommand cmd = new MySqlCommand(cmdText, con);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        lb_termekek.Items.Add(
+                            new Termek(reader.GetString(1)
+                                + " ("
+                                + reader.GetDouble(2).ToString() + " Ft)",
+                                reader.GetString(0), reader.GetString(1), reader.GetDouble(2)));
+                        lst_termekek.Add(
+                            new Termek(reader.GetString(1)
+                                + " ("
+                                + reader.GetDouble(2).ToString() + " Ft)",
+                                reader.GetString(0), reader.GetString(1), reader.GetDouble(2)));
+                    }
+                }
+                catch (MySqlException err)
+                {
+                    System.IO.File.WriteAllText("log.txt", err.ToString());
+                }
+
+                
+            }
+            else
+            {
+                cb_kategoriak.ForeColor = szuroSzin;
+                
+            }
+
+            
+        }
+
+        private void cb_kategoriak_Enter(object sender, EventArgs e)
+        {
+            cb_kategoriak.ForeColor = Color.Black;
         }
     }
 }
