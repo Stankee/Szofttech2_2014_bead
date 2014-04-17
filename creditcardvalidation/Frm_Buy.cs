@@ -10,18 +10,8 @@ using MySql.Data.MySqlClient;
 
 /* 
  * TODO 
- * 1. vásárlások lekérdezése, group by időpont
- *    select vnev, knev, idopont, count(*), sum(ar) from vasarlasoknezet group by idopont, vnev, knev 
- * 2. néha eltűnik a termék neve után az összeg (faszt tünik el csak madár vagy) TODO: abbahagyni a madárkodást :D
- * 3. valami biszembaszom terméknév kitalálása (Properties/AssemblyInfo.cs)
+ * 1. valami biszembaszom terméknév kitalálása (Properties/AssemblyInfo.cs)
  * 
- * DONE 
- * 1. cb_kategoriak feltöltése
- * 2. szűrés, ha megoldható tényleg szűrjön és ne a kezdődést vizsgálja (ha beírom, hogy Asus, akkor az összes Asus terméket mutassa)
- * 3. random generáljunk pénzt az új embereknek (Frm_Start)
- * 4. névjegy adatainak beállítása
- * 5. a korábbi vásárlások űrlapon jelenjen meg alapból a 'vasarlasoknezet', de lehessen embert is választani
- *  
  * INFO
  * vasarlasok tábla: kartyaSzam (char16), termekID (char4), darab (int)
  * vasarlok tábla: vnev (varchar), knev (varchar), kartyaSzam (char16), egyenleg (double)
@@ -43,8 +33,7 @@ using MySql.Data.MySqlClient;
 namespace CreditCardValidation
 {
     public partial class Frm_Buy : Form
-    {
-        
+    {        
         string str;
         string user;
         string pass;
@@ -52,6 +41,9 @@ namespace CreditCardValidation
         int? cacheindex = null;
         double osszar;
         List<Termek> lst_termekek = new List<Termek>();
+
+        //txt_szuro szín mentése
+        Color szuroSzin = new Color();
 
         public Frm_Buy(string selectedName)
         {
@@ -200,6 +192,7 @@ namespace CreditCardValidation
         {
             Vasarlo selected = ((Vasarlo)cb_vasarlok.SelectedItem);
 
+            #region OLD
             /*MySqlConnection con = null;
             MySqlDataReader reader = null;
 
@@ -213,6 +206,7 @@ namespace CreditCardValidation
             {
                 txt_egyenleg.Text = reader.GetDouble(3).ToString();
             }*/
+            #endregion
 
             txt_egyenleg.Text = selected.Egyenleg.ToString() + " Ft";
         }
@@ -286,7 +280,7 @@ namespace CreditCardValidation
         private void btn_add_Click(object sender, EventArgs e)
         {
             string kartyaSzam = ((Vasarlo)cb_vasarlok.SelectedItem).KartyaSzam;
-            double ujEgyenleg = ((Vasarlo)cb_vasarlok.SelectedItem).Egyenleg +10000;
+            double ujEgyenleg = ((Vasarlo)cb_vasarlok.SelectedItem).Egyenleg + 10000;
 
             string command = "UPDATE vasarlok SET egyenleg=" + ujEgyenleg.ToString() + " WHERE kartyaSzam = '" + kartyaSzam + "'";
 
@@ -297,6 +291,7 @@ namespace CreditCardValidation
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(command, con);
                 cmd.ExecuteNonQuery();
+                beolvasSQL();
             }
             catch (MySqlException err)
             {
@@ -309,9 +304,7 @@ namespace CreditCardValidation
                 {
                     con.Close();
                 }
-            }
-
-            beolvasSQL();
+            }            
         }
 
         private void btn_kiakosarbol_Click(object sender, EventArgs e)
@@ -369,6 +362,7 @@ namespace CreditCardValidation
                     txt_teljesar.Text = "0 Ft";
                     osszar = 0;
                     lb_kosar.Items.Clear();
+                    cb_vasarlok.Enabled = true;
                 }
             }
             else
@@ -381,8 +375,7 @@ namespace CreditCardValidation
                 {
                     MessageBox.Show("Nincs semmi a kosárban!", "Hiba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            
+            }            
         }
 
         private void cb_vasarlok_SelectedIndexChanged(object sender, EventArgs e)
@@ -452,16 +445,11 @@ namespace CreditCardValidation
         private void lb_kosar_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             kiakosarbol();
-        }
-
-        //txt_szuro szín mentése
-        Color szuroSzin = new Color();
+        }        
 
         private void txt_szuro_Enter(object sender, EventArgs e)
         {
             txt_szuro.Text = "";
-            szuroSzin = txt_szuro.ForeColor;
-            txt_szuro.ForeColor = Color.Black;
         }
 
         private void txt_szuro_Leave(object sender, EventArgs e)
@@ -469,12 +457,7 @@ namespace CreditCardValidation
             if (txt_szuro.Text == "")
             {
                 txt_szuro.Text = "Keresés";
-                txt_szuro.ForeColor = szuroSzin;
-            }
-            if (txt_szuro.Text != "Keresés")
-            {
-                txt_szuro.ForeColor = Color.Black;
-            }            
+            }          
         }
 
         private void cb_kategoriak_SelectedIndexChanged(object sender, EventArgs e)
@@ -483,6 +466,7 @@ namespace CreditCardValidation
             {
                 lb_termekek.Items.Clear();
                 lst_termekek.Clear();
+                txt_szuro.Text = "Keresés";
                 cb_kategoriak.ForeColor = Color.Black;
                 try
                 {
@@ -513,22 +497,8 @@ namespace CreditCardValidation
                 catch (MySqlException err)
                 {
                     System.IO.File.WriteAllText("log.txt", err.ToString());
-                }
-
-                
-            }
-            else
-            {
-                cb_kategoriak.ForeColor = szuroSzin;
-                
-            }
-
-            
-        }
-
-        private void cb_kategoriak_Enter(object sender, EventArgs e)
-        {
-            cb_kategoriak.ForeColor = Color.Black;
+                }                
+            }           
         }
     }
 }

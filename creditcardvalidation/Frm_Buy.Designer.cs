@@ -173,7 +173,8 @@
             // btn_add
             // 
             this.btn_add.Enabled = false;
-            this.btn_add.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_add.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btn_add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_add.Location = new System.Drawing.Point(330, 26);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
@@ -196,7 +197,7 @@
             // txt_szuro
             // 
             this.txt_szuro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_szuro.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txt_szuro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txt_szuro.Location = new System.Drawing.Point(16, 83);
             this.txt_szuro.Name = "txt_szuro";
             this.txt_szuro.Size = new System.Drawing.Size(350, 20);
@@ -229,7 +230,7 @@
             // cb_kategoriak
             // 
             this.cb_kategoriak.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cb_kategoriak.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.cb_kategoriak.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.cb_kategoriak.FormattingEnabled = true;
             this.cb_kategoriak.Location = new System.Drawing.Point(77, 60);
             this.cb_kategoriak.Name = "cb_kategoriak";
@@ -237,7 +238,6 @@
             this.cb_kategoriak.TabIndex = 15;
             this.cb_kategoriak.Text = "Kategóriák";
             this.cb_kategoriak.SelectedIndexChanged += new System.EventHandler(this.cb_kategoriak_SelectedIndexChanged);
-            this.cb_kategoriak.Enter += new System.EventHandler(this.cb_kategoriak_Enter);
             // 
             // Frm_Buy
             // 
