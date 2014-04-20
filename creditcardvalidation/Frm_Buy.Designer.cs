@@ -83,7 +83,7 @@
             // 
             // btn_kosarba
             // 
-            this.btn_kosarba.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_kosarba.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btn_kosarba.Location = new System.Drawing.Point(391, 215);
             this.btn_kosarba.Name = "btn_kosarba";
             this.btn_kosarba.Size = new System.Drawing.Size(28, 28);
@@ -132,7 +132,7 @@
             // 
             // btn_save
             // 
-            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btn_save.Location = new System.Drawing.Point(368, 414);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(75, 23);
@@ -174,7 +174,7 @@
             // 
             this.btn_add.Enabled = false;
             this.btn_add.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btn_add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_add.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btn_add.Location = new System.Drawing.Point(330, 26);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
@@ -185,7 +185,7 @@
             // 
             // btn_kiakosarbol
             // 
-            this.btn_kiakosarbol.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_kiakosarbol.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btn_kiakosarbol.Location = new System.Drawing.Point(391, 249);
             this.btn_kiakosarbol.Name = "btn_kiakosarbol";
             this.btn_kiakosarbol.Size = new System.Drawing.Size(28, 28);
@@ -196,7 +196,6 @@
             // 
             // txt_szuro
             // 
-            this.txt_szuro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_szuro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txt_szuro.Location = new System.Drawing.Point(16, 83);
             this.txt_szuro.Name = "txt_szuro";

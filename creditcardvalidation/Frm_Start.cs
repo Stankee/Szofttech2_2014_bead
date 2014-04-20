@@ -35,6 +35,7 @@ namespace CreditCardValidation
         public Frm_Start()
         {
             InitializeComponent();
+            lb_sqlkartya.ContextMenuStrip = contextMenuStrip1;
             inditas();
         }
 
@@ -270,7 +271,7 @@ namespace CreditCardValidation
                 tlslabel_connect.Text = "Kapcsolódva";
                 tlslabel_connect.ForeColor = Color.FromArgb(0, 125, 21);            
             }
-            catch (MySqlException err)
+            catch (MySqlException err) 
             {
                 System.IO.File.WriteAllText("log.txt", err.ToString());                
                 tlslabel_connect.Text = "Kapcsolódás sikertelen";
@@ -307,10 +308,9 @@ namespace CreditCardValidation
                     {
                         nev = nev.Substring(0, 17);
                     }
-                    lb_sql.Items.Add(
-                        new Vasarlo(nev
-                        + "\t"
-                        + " ["
+
+                    string kartyaSzam =
+                        "["
                         + reader.GetString(2).Substring(0, 4)
                         + "-"
                         + reader.GetString(2).Substring(4, 4)
@@ -318,7 +318,10 @@ namespace CreditCardValidation
                         + reader.GetString(2).Substring(8, 4)
                         + "-"
                         + reader.GetString(2).Substring(12, 4)
-                        + "]", reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDouble(3)));
+                        + "]";
+                    lb_sql.Items.Add(
+                        new Vasarlo(nev, reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDouble(3)));
+                    lb_sqlkartya.Items.Add(kartyaSzam);
                 }
             }
             catch (MySqlException err)
@@ -427,6 +430,7 @@ namespace CreditCardValidation
 
         private void lb_sql_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lb_sqlkartya.SelectedIndex = lb_sql.SelectedIndex;
             if (lb_sql.SelectedIndex != -1)
             {
                 kartyaID = ((Vasarlo)lb_sql.SelectedItem).KartyaSzam;
@@ -532,6 +536,11 @@ namespace CreditCardValidation
             Frm_PastBuys f = new Frm_PastBuys(selectedName);
             f.i = i;
             f.Show();
+        }
+
+        private void lb_sqlkartya_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lb_sql.SelectedIndex = lb_sqlkartya.SelectedIndex;
         }
     }
 }

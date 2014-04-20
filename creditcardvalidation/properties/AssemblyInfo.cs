@@ -6,11 +6,11 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CreditCardValidation")]
+[assembly: AssemblyTitle("VasarlasCCV")]
 [assembly: AssemblyDescription("Budapesti Corvinus Egyetem Szoftvertechnológia II - Beadandó feladat (Árokszállási Ákos - Katona Balázs)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Budapesti Corvinus Egyetem")]
-[assembly: AssemblyProduct("CreditCardValidation")]
+[assembly: AssemblyProduct("VasarlasCCV")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -34,5 +34,5 @@ using System.Resources;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.01")]
-[assembly: AssemblyFileVersion("1.01a")]
+[assembly: AssemblyFileVersion("1.01")]
 [assembly: NeutralResourcesLanguageAttribute("hu")]

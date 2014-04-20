@@ -37,6 +37,7 @@
             this.btn_sqlDelete = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.lb_sqlkartya = new System.Windows.Forms.ListBox();
             this.lb_sql = new System.Windows.Forms.ListBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.másolásToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,13 +77,15 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(-1, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(363, 277);
+            this.tabControl1.Size = new System.Drawing.Size(483, 359);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.TabStop = false;
             // 
@@ -93,20 +96,21 @@
             this.tabPage3.Controls.Add(this.btn_sqlDelete);
             this.tabPage3.Controls.Add(this.label7);
             this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.lb_sqlkartya);
             this.tabPage3.Controls.Add(this.lb_sql);
             this.tabPage3.Controls.Add(this.btn_newBuy);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(355, 248);
+            this.tabPage3.Size = new System.Drawing.Size(475, 333);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Adatbázis";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // btn_pastbuy
             // 
-            this.btn_pastbuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_pastbuy.Location = new System.Drawing.Point(6, 138);
+            this.btn_pastbuy.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btn_pastbuy.Location = new System.Drawing.Point(9, 191);
             this.btn_pastbuy.Name = "btn_pastbuy";
             this.btn_pastbuy.Size = new System.Drawing.Size(75, 23);
             this.btn_pastbuy.TabIndex = 7;
@@ -116,8 +120,8 @@
             // 
             // btn_change
             // 
-            this.btn_change.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_change.Location = new System.Drawing.Point(6, 167);
+            this.btn_change.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btn_change.Location = new System.Drawing.Point(9, 220);
             this.btn_change.Name = "btn_change";
             this.btn_change.Size = new System.Drawing.Size(75, 23);
             this.btn_change.TabIndex = 6;
@@ -127,8 +131,9 @@
             // 
             // btn_sqlDelete
             // 
-            this.btn_sqlDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_sqlDelete.Location = new System.Drawing.Point(6, 196);
+            this.btn_sqlDelete.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
+            this.btn_sqlDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btn_sqlDelete.Location = new System.Drawing.Point(9, 249);
             this.btn_sqlDelete.Name = "btn_sqlDelete";
             this.btn_sqlDelete.Size = new System.Drawing.Size(75, 23);
             this.btn_sqlDelete.TabIndex = 5;
@@ -139,7 +144,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(187, 3);
+            this.label7.Location = new System.Drawing.Point(273, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(58, 13);
             this.label7.TabIndex = 4;
@@ -148,20 +153,31 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(89, 3);
+            this.label8.Location = new System.Drawing.Point(87, 3);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 13);
             this.label8.TabIndex = 3;
             this.label8.Text = "Név:";
+            // 
+            // lb_sqlkartya
+            // 
+            this.lb_sqlkartya.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lb_sqlkartya.FormattingEnabled = true;
+            this.lb_sqlkartya.Location = new System.Drawing.Point(281, 19);
+            this.lb_sqlkartya.Name = "lb_sqlkartya";
+            this.lb_sqlkartya.Size = new System.Drawing.Size(180, 249);
+            this.lb_sqlkartya.TabIndex = 2;
+            this.lb_sqlkartya.SelectedIndexChanged += new System.EventHandler(this.lb_sqlkartya_SelectedIndexChanged);
+            this.lb_sqlkartya.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lb_sql_MouseDoubleClick);
             // 
             // lb_sql
             // 
             this.lb_sql.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lb_sql.ContextMenuStrip = this.contextMenuStrip1;
             this.lb_sql.FormattingEnabled = true;
-            this.lb_sql.Location = new System.Drawing.Point(90, 19);
+            this.lb_sql.Location = new System.Drawing.Point(95, 19);
             this.lb_sql.Name = "lb_sql";
-            this.lb_sql.Size = new System.Drawing.Size(259, 197);
+            this.lb_sql.Size = new System.Drawing.Size(180, 249);
             this.lb_sql.TabIndex = 2;
             this.lb_sql.SelectedIndexChanged += new System.EventHandler(this.lb_sql_SelectedIndexChanged);
             this.lb_sql.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lb_sql_MouseDoubleClick);
@@ -182,8 +198,8 @@
             // 
             // btn_newBuy
             // 
-            this.btn_newBuy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_newBuy.Location = new System.Drawing.Point(6, 109);
+            this.btn_newBuy.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btn_newBuy.Location = new System.Drawing.Point(9, 162);
             this.btn_newBuy.Name = "btn_newBuy";
             this.btn_newBuy.Size = new System.Drawing.Size(75, 23);
             this.btn_newBuy.TabIndex = 1;
@@ -204,18 +220,18 @@
             this.tabPage1.Controls.Add(this.txt_kartya2);
             this.tabPage1.Controls.Add(this.txt_kartya1);
             this.tabPage1.Controls.Add(this.pictureBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(355, 248);
+            this.tabPage1.Size = new System.Drawing.Size(475, 333);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Új vásárló";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btn_addSQL
             // 
-            this.btn_addSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_addSQL.Location = new System.Drawing.Point(140, 133);
+            this.btn_addSQL.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btn_addSQL.Location = new System.Drawing.Point(187, 179);
             this.btn_addSQL.Name = "btn_addSQL";
             this.btn_addSQL.Size = new System.Drawing.Size(75, 23);
             this.btn_addSQL.TabIndex = 9;
@@ -226,7 +242,7 @@
             // txt_knev
             // 
             this.txt_knev.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_knev.Location = new System.Drawing.Point(105, 68);
+            this.txt_knev.Location = new System.Drawing.Point(152, 114);
             this.txt_knev.MaxLength = 50;
             this.txt_knev.Name = "txt_knev";
             this.txt_knev.Size = new System.Drawing.Size(163, 20);
@@ -236,7 +252,7 @@
             // txt_vnev
             // 
             this.txt_vnev.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_vnev.Location = new System.Drawing.Point(105, 42);
+            this.txt_vnev.Location = new System.Drawing.Point(152, 88);
             this.txt_vnev.MaxLength = 50;
             this.txt_vnev.Name = "txt_vnev";
             this.txt_vnev.Size = new System.Drawing.Size(163, 20);
@@ -246,7 +262,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 71);
+            this.label3.Location = new System.Drawing.Point(79, 117);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 2;
@@ -255,7 +271,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 45);
+            this.label2.Location = new System.Drawing.Point(79, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 13);
             this.label2.TabIndex = 2;
@@ -264,7 +280,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 97);
+            this.label1.Location = new System.Drawing.Point(78, 143);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 1;
@@ -273,7 +289,7 @@
             // txt_kartya4
             // 
             this.txt_kartya4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_kartya4.Location = new System.Drawing.Point(273, 94);
+            this.txt_kartya4.Location = new System.Drawing.Point(320, 140);
             this.txt_kartya4.MaxLength = 4;
             this.txt_kartya4.Name = "txt_kartya4";
             this.txt_kartya4.Size = new System.Drawing.Size(50, 20);
@@ -283,7 +299,7 @@
             // txt_kartya3
             // 
             this.txt_kartya3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_kartya3.Location = new System.Drawing.Point(217, 94);
+            this.txt_kartya3.Location = new System.Drawing.Point(264, 140);
             this.txt_kartya3.MaxLength = 4;
             this.txt_kartya3.Name = "txt_kartya3";
             this.txt_kartya3.Size = new System.Drawing.Size(50, 20);
@@ -293,7 +309,7 @@
             // txt_kartya2
             // 
             this.txt_kartya2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_kartya2.Location = new System.Drawing.Point(161, 94);
+            this.txt_kartya2.Location = new System.Drawing.Point(208, 140);
             this.txt_kartya2.MaxLength = 4;
             this.txt_kartya2.Name = "txt_kartya2";
             this.txt_kartya2.Size = new System.Drawing.Size(50, 20);
@@ -303,7 +319,7 @@
             // txt_kartya1
             // 
             this.txt_kartya1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txt_kartya1.Location = new System.Drawing.Point(105, 94);
+            this.txt_kartya1.Location = new System.Drawing.Point(152, 140);
             this.txt_kartya1.MaxLength = 4;
             this.txt_kartya1.Name = "txt_kartya1";
             this.txt_kartya1.Size = new System.Drawing.Size(50, 20);
@@ -313,7 +329,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CreditCardValidation.Properties.Resources.red_cross;
-            this.pictureBox1.Location = new System.Drawing.Point(329, 94);
+            this.pictureBox1.Location = new System.Drawing.Point(376, 140);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(20, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -328,7 +344,7 @@
             this.súgóToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(359, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(479, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -344,14 +360,14 @@
             // mentésToolStripMenuItem
             // 
             this.mentésToolStripMenuItem.Name = "mentésToolStripMenuItem";
-            this.mentésToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mentésToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.mentésToolStripMenuItem.Text = "&Mentés";
             this.mentésToolStripMenuItem.Click += new System.EventHandler(this.mentésToolStripMenuItem_Click);
             // 
             // kilépésToolStripMenuItem
             // 
             this.kilépésToolStripMenuItem.Name = "kilépésToolStripMenuItem";
-            this.kilépésToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kilépésToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.kilépésToolStripMenuItem.Text = "&Kilépés";
             this.kilépésToolStripMenuItem.Click += new System.EventHandler(this.kilépésToolStripMenuItem_Click);
             // 
@@ -366,18 +382,20 @@
             // névjegyToolStripMenuItem
             // 
             this.névjegyToolStripMenuItem.Name = "névjegyToolStripMenuItem";
-            this.névjegyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.névjegyToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.névjegyToolStripMenuItem.Text = "&Névjegy";
             this.névjegyToolStripMenuItem.Click += new System.EventHandler(this.névjegyToolStripMenuItem_Click);
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.panel1.Controls.Add(this.label4);
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel1.Location = new System.Drawing.Point(0, 248);
+            this.panel1.Location = new System.Drawing.Point(0, 330);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(359, 35);
+            this.panel1.Size = new System.Drawing.Size(479, 35);
             this.panel1.TabIndex = 8;
             this.panel1.Visible = false;
             // 
@@ -386,7 +404,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label4.Location = new System.Drawing.Point(110, 10);
+            this.label4.Location = new System.Drawing.Point(170, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 14);
             this.label4.TabIndex = 0;
@@ -401,9 +419,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tlslabel_connect});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 282);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 364);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(359, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(479, 22);
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -417,7 +435,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 304);
+            this.ClientSize = new System.Drawing.Size(479, 386);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
@@ -484,6 +502,7 @@
         private System.Windows.Forms.ToolStripMenuItem névjegyToolStripMenuItem;
         private System.Windows.Forms.Button btn_newBuy;
         private System.Windows.Forms.Button btn_pastbuy;
+        private System.Windows.Forms.ListBox lb_sqlkartya;
     }
 }
 
