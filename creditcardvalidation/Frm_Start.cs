@@ -35,6 +35,7 @@ namespace CreditCardValidation
         public Frm_Start()
         {
             InitializeComponent();
+            lb_sqlkartya.ContextMenuStrip = contextMenuStrip1;
             inditas();
         }
 
@@ -51,6 +52,7 @@ namespace CreditCardValidation
             beolvasSQL();
             sqlConnect();
             btn_change.Enabled = false;
+            btn_addSQL.Enabled = false;
         }
 
         private void txt_vnev_TextChanged(object sender, EventArgs e)
@@ -68,7 +70,11 @@ namespace CreditCardValidation
                     txt_vnev.BackColor = Color.LightSalmon;
                     btn_addSQL.Enabled = false;
                 }
-            }            
+            }
+            if (txt_vnev.Text.Length == 0)
+            {
+                txt_vnev.BackColor = Color.White;
+            }
         }
 
         private void txt_knev_TextChanged(object sender, EventArgs e)
@@ -89,7 +95,11 @@ namespace CreditCardValidation
                     txt_knev.BackColor = Color.LightSalmon;
                     btn_addSQL.Enabled = false;
                 }
-            }        
+            }
+            if (txt_knev.Text.Length == 0)
+            {
+                txt_knev.BackColor = Color.White;
+            }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -132,7 +142,12 @@ namespace CreditCardValidation
             {
                 txt_kartya1.BackColor = Color.LightSalmon;                
                 btn_addSQL.Enabled = false;
-            }          
+            }
+
+            if (txt_kartya1.Text.Length == 0)
+            {
+                txt_kartya1.BackColor = Color.White;
+            }
         }
 
         private void txt_kartya2_TextChanged(object sender, EventArgs e)
@@ -150,6 +165,11 @@ namespace CreditCardValidation
                 txt_kartya2.BackColor = Color.LightSalmon;
                 btn_addSQL.Enabled = false;
             }
+
+            if (txt_kartya2.Text.Length == 0)
+            {
+                txt_kartya2.BackColor = Color.White;
+            }
         }
 
         private void txt_kartya3_TextChanged(object sender, EventArgs e)
@@ -166,6 +186,11 @@ namespace CreditCardValidation
             {
                 txt_kartya3.BackColor = Color.LightSalmon;
                 btn_addSQL.Enabled = false;
+            }
+
+            if (txt_kartya3.Text.Length == 0)
+            {
+                txt_kartya3.BackColor = Color.White;
             }
         }
 
@@ -187,6 +212,11 @@ namespace CreditCardValidation
             {
                 txt_kartya4.BackColor = Color.LightSalmon;                
                 btn_addSQL.Enabled = false;
+            }
+
+            if (txt_kartya4.Text.Length == 0)
+            {
+                txt_kartya4.BackColor = Color.White;
             }
         }
 
@@ -259,6 +289,8 @@ namespace CreditCardValidation
             pictureBox1.Visible = false;
             timer_save.Enabled = false;            
         }
+
+        //Kapcsolat ellenőrzése
         
         private void sqlConnect()
         {                       
@@ -270,7 +302,7 @@ namespace CreditCardValidation
                 tlslabel_connect.Text = "Kapcsolódva";
                 tlslabel_connect.ForeColor = Color.FromArgb(0, 125, 21);            
             }
-            catch (MySqlException err)
+            catch (MySqlException err) 
             {
                 System.IO.File.WriteAllText("log.txt", err.ToString());                
                 tlslabel_connect.Text = "Kapcsolódás sikertelen";
@@ -307,10 +339,9 @@ namespace CreditCardValidation
                     {
                         nev = nev.Substring(0, 17);
                     }
-                    lb_sql.Items.Add(
-                        new Vasarlo(nev
-                        + "\t"
-                        + " ["
+
+                    string kartyaSzam =
+                        "["
                         + reader.GetString(2).Substring(0, 4)
                         + "-"
                         + reader.GetString(2).Substring(4, 4)
@@ -318,7 +349,10 @@ namespace CreditCardValidation
                         + reader.GetString(2).Substring(8, 4)
                         + "-"
                         + reader.GetString(2).Substring(12, 4)
-                        + "]", reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDouble(3)));
+                        + "]";
+                    lb_sql.Items.Add(
+                        new Vasarlo(nev, reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDouble(3)));
+                    lb_sqlkartya.Items.Add(kartyaSzam);
                 }
             }
             catch (MySqlException err)
@@ -341,6 +375,8 @@ namespace CreditCardValidation
         private void btn_addSQL_Click(object sender, EventArgs e)
         {
             string kartyaSzam = txt_kartya1.Text + txt_kartya2.Text + txt_kartya3.Text + txt_kartya4.Text;
+
+            //Egyenleg random generálása
             r = new Random();
             double egyenleg = r.Next(10000, 250000);
      
@@ -349,7 +385,7 @@ namespace CreditCardValidation
             {
                 con = new MySqlConnection(str);
                 con.Open();
-
+                //paraméterezett SQL query
                 string cmdAdd = "INSERT INTO vasarlok (vnev, knev, kartyaSzam, egyenleg) VALUES (@vnev, @knev, @kartyaSzam, @egyenleg);";
                 MySqlCommand cmd = new MySqlCommand(cmdAdd, con);
                 cmd.Prepare();
@@ -427,6 +463,7 @@ namespace CreditCardValidation
 
         private void lb_sql_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lb_sqlkartya.SelectedIndex = lb_sql.SelectedIndex;
             if (lb_sql.SelectedIndex != -1)
             {
                 kartyaID = ((Vasarlo)lb_sql.SelectedItem).KartyaSzam;
@@ -532,6 +569,20 @@ namespace CreditCardValidation
             Frm_PastBuys f = new Frm_PastBuys(selectedName);
             f.i = i;
             f.Show();
+        }
+
+        private void lb_sqlkartya_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lb_sql.SelectedIndex = lb_sqlkartya.SelectedIndex;
+        }
+
+        private void txt_kartya1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.ControlKey && e.KeyChar == (char)Keys.V)
+            {
+                string txt = Clipboard.GetText();
+                txt_kartya1.Text=txt.Substring(0,4);
+            }   
         }
     }
 }

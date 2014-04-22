@@ -40,10 +40,7 @@ namespace CreditCardValidation
         string delegatedName;
         int? cacheindex = null;
         double osszar;
-        List<Termek> lst_termekek = new List<Termek>();
-
-        //txt_szuro szín mentése
-        Color szuroSzin = new Color();
+        List<Termek> lst_termekek = new List<Termek>();       
 
         public Frm_Buy(string selectedName)
         {
