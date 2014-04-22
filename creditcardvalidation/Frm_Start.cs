@@ -575,6 +575,7 @@ namespace CreditCardValidation
         {
             lb_sql.SelectedIndex = lb_sqlkartya.SelectedIndex;
         }
+<<<<<<< HEAD
 
         private void txt_kartya1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -584,5 +585,7 @@ namespace CreditCardValidation
                 txt_kartya1.Text=txt.Substring(0,4);
             }   
         }
+=======
+>>>>>>> 9b0558528cef17cda7e5dff6fa2140ee72641600
     }
 }
