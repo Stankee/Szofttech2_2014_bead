@@ -36,6 +36,10 @@ namespace CreditCardValidation
         {
             InitializeComponent();
             lb_sqlkartya.ContextMenuStrip = contextMenuStrip1;
+            txt_kartya1.ContextMenu = new ContextMenu();
+            txt_kartya2.ContextMenu = new ContextMenu();
+            txt_kartya3.ContextMenu = new ContextMenu();
+            txt_kartya4.ContextMenu = new ContextMenu();
             inditas();
         }
 
@@ -575,17 +579,20 @@ namespace CreditCardValidation
         {
             lb_sql.SelectedIndex = lb_sqlkartya.SelectedIndex;
         }
-<<<<<<< HEAD
 
-        private void txt_kartya1_KeyPress(object sender, KeyPressEventArgs e)
+        private void txt_kartya1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.ControlKey && e.KeyChar == (char)Keys.V)
+            if (e.KeyCode == Keys.V && e.Modifiers == Keys.Control)
             {
-                string txt = Clipboard.GetText();
-                txt_kartya1.Text=txt.Substring(0,4);
-            }   
+                string input = Clipboard.GetText();
+                if (input.Length==16)
+                {
+                    txt_kartya1.Text = input.Substring(0, 4);
+                    txt_kartya2.Text = input.Substring(4, 4);
+                    txt_kartya3.Text = input.Substring(8, 4);
+                    txt_kartya4.Text = input.Substring(12, 4);
+                }                
+            }
         }
-=======
->>>>>>> 9b0558528cef17cda7e5dff6fa2140ee72641600
     }
 }

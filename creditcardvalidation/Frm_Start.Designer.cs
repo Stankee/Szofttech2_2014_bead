@@ -292,10 +292,8 @@
             this.txt_kartya4.Location = new System.Drawing.Point(320, 140);
             this.txt_kartya4.MaxLength = 4;
             this.txt_kartya4.Name = "txt_kartya4";
-            this.txt_kartya4.ShortcutsEnabled = false;
             this.txt_kartya4.Size = new System.Drawing.Size(50, 20);
             this.txt_kartya4.TabIndex = 6;
-            this.txt_kartya4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_kartya4.TextChanged += new System.EventHandler(this.txt_kartya4_TextChanged);
             // 
             // txt_kartya3
@@ -304,10 +302,8 @@
             this.txt_kartya3.Location = new System.Drawing.Point(264, 140);
             this.txt_kartya3.MaxLength = 4;
             this.txt_kartya3.Name = "txt_kartya3";
-            this.txt_kartya3.ShortcutsEnabled = false;
             this.txt_kartya3.Size = new System.Drawing.Size(50, 20);
             this.txt_kartya3.TabIndex = 5;
-            this.txt_kartya3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_kartya3.TextChanged += new System.EventHandler(this.txt_kartya3_TextChanged);
             // 
             // txt_kartya2
@@ -316,10 +312,8 @@
             this.txt_kartya2.Location = new System.Drawing.Point(208, 140);
             this.txt_kartya2.MaxLength = 4;
             this.txt_kartya2.Name = "txt_kartya2";
-            this.txt_kartya2.ShortcutsEnabled = false;
             this.txt_kartya2.Size = new System.Drawing.Size(50, 20);
             this.txt_kartya2.TabIndex = 4;
-            this.txt_kartya2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_kartya2.TextChanged += new System.EventHandler(this.txt_kartya2_TextChanged);
             // 
             // txt_kartya1
@@ -328,12 +322,10 @@
             this.txt_kartya1.Location = new System.Drawing.Point(152, 140);
             this.txt_kartya1.MaxLength = 4;
             this.txt_kartya1.Name = "txt_kartya1";
-            this.txt_kartya1.ShortcutsEnabled = false;
             this.txt_kartya1.Size = new System.Drawing.Size(50, 20);
             this.txt_kartya1.TabIndex = 3;
-            this.txt_kartya1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_kartya1.TextChanged += new System.EventHandler(this.txt_kartya1_TextChanged);
-            this.txt_kartya1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_kartya1_KeyPress);
+            this.txt_kartya1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_kartya1_KeyDown);
             // 
             // pictureBox1
             // 
@@ -451,6 +443,7 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Frm_Start";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -127,7 +127,7 @@ namespace CreditCardValidation
         private void feltolt()
         {
             string alapSQL = "SELECT * FROM vasarlasoknezetnew";
-            string csoportSQL = "select `Nev`, Count(`Termeknev`) as Termekek, Sum(Ar) as Osszesen, Idopont from vasarlasoknezetnew group by Nev, Idopont order by idopont desc";
+            string csoportSQL = "select Nev, Count(Termeknev) as Termekek, Sum(Ar) as Osszesen, Idopont from vasarlasoknezetnew group by Nev, Idopont order by idopont desc";
 
             MySqlConnection con = null;
             con = new MySqlConnection(str);
